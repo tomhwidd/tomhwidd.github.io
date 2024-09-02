@@ -1,6 +1,6 @@
 ---
 title: "Earth surface temperature and the impacts of climate change "
-excerpt: "My first data analysis project, for me to learn and improve my skills. In this projects I look at global temperature data and use different methods of plottng, to see trends. <br/><br/> <br/><img src='/images/projects/global_temps/global_land_average.png'>"
+excerpt: "My first data analysis project, for me to learn and improve my skills. In this project I look at global temperature data and use different methods of plottng, to see trends.  <br/><img src='/images/projects/global_temps/global_land_average.png'>"
 collection: portfolio
 ---
 
@@ -31,7 +31,7 @@ import plotly as py
 import seaborn as sns
 ```
 
-#### PLotting average global temperatures over time
+### PLotting average global temperatures over time
 
 For the initial analysis, I decided to plot average global land temperaures, to see the general trend. Luckily this data came with uncertanties, which we will use later on.
 
