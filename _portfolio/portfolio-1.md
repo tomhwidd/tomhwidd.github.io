@@ -1,6 +1,6 @@
 ---
-title: "Exoplanet light curves using TESS data"
-excerpt: "A short project downloading, cleaning and folding light curve data to demonstrate the ability to detect exoplanets. <br/><br/> <br/><img src='/images/500x300.png'>"
+title: "Earth surface temperature and the impacts of climate change "
+excerpt: "My first data analysis project, for me to learn and improve my skills. In this projects I look at global temperature data and use different methods of plottng, to see trends. <br/><br/> <br/><img src='/images/projects/global_temps/global_land_average.png'>"
 collection: portfolio
 ---
 
