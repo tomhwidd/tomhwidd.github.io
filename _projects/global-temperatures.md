@@ -31,6 +31,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly as py
 import seaborn as sns
+from scipy.stats import linregress
 ```
 
 ### Plotting average global land temperatures over time
@@ -41,40 +42,41 @@ For the initial analysis, I decided to plot average global land temperaures, to 
 ```python
 global_temps = pd.read_csv('GlobalTemperatures.csv')
 
-# Extracting and converting the year to numeric
-global_temps['Year'] = pd.to_numeric(global_temps['dt'].str[0:4]) 
-#grabs the first 4 elements of the string ad turns into a number
+# Extract and convert Year to numeric
+global_temps['Year'] = pd.to_numeric(global_temps['dt'].str[0:4])
+
+# Remove rows with missing 'LandAverageTemperature' values
+global_temps_clean = global_temps.dropna(subset=['LandAverageTemperature'])
+
+# Calculate uncertainties
+global_temps['LandAverageTemperature+Unc'] = global_temps['LandAverageTemperature'] + global_temps['LandAverageTemperatureUncertainty']
+global_temps['LandAverageTemperature-Unc'] = global_temps['LandAverageTemperature'] - global_temps['LandAverageTemperatureUncertainty']
+
+
 ```
 
 
 ```python
-#creating an array of decades to use on plot
+# Convert Year to numeric
+global_temps['Year'] = pd.to_numeric(global_temps['Year'])
 years = np.arange(global_temps['Year'].min(), global_temps['Year'].max() + 1, 10)
 
-# Calculating upp and lower uncertainties
-global_temps['LandAverageTemperature+Unc'] = 
-global_temps['LandAverageTemperature'] 
-+ global_temps['LandAverageTemperatureUncertainty']
+# Calculate uncertainties
+global_temps['LandAverageTemperature+Unc'] = global_temps['LandAverageTemperature'] + global_temps['LandAverageTemperatureUncertainty']
+global_temps['LandAverageTemperature-Unc'] = global_temps['LandAverageTemperature'] - global_temps['LandAverageTemperatureUncertainty']
 
-global_temps['LandAverageTemperature-Unc'] = global_temps['LandAverageTemperature'] 
-- global_temps['LandAverageTemperatureUncertainty']
-
-# Creating the figure and axis
+# Create the figure and axes
 fig, ax = plt.subplots(figsize=(10, 5))
 
-#Plotting average and uncertanties
-sns.lineplot(data=global_temps,
-             x='Year', y='LandAverageTemperature',
-             color='#B39DDB', ax=ax, 
-             label='Average Temperature')  # Soft Purple
-sns.lineplot(data=global_temps,
-             x='Year', y='LandAverageTemperature+Unc',
-             color='#EF5350', ax=ax, label='+ Uncertainty')  # Soft Red
-sns.lineplot(data=global_temps,
-             x='Year', y='LandAverageTemperature-Unc',
-              color='#66BB6A', ax=ax, 
-              label='- Uncertainty')  # Green
+# Plot the data with updated colors and labels for the legend
+sns.lineplot(data=global_temps, x='Year', y='LandAverageTemperature', color='#B39DDB', ax=ax, label='Average Temperature')  # Soft Purple
+sns.lineplot(data=global_temps, x='Year', y='LandAverageTemperature+Unc', color='#EF5350', ax=ax, label='+ Uncertainty')  # Soft Red
+sns.lineplot(data=global_temps, x='Year', y='LandAverageTemperature-Unc', color='#66BB6A', ax=ax, label='- Uncertainty')  # Green
+
+# Add the legend
 ax.legend()
+
+
 
 # Set the title and labels
 plt.title('Average Global Land Temperature Since 1750', fontsize=14)
@@ -97,11 +99,55 @@ plt.show()
     
 
 
+While it appears there is a trend upward here, it is difficult to directly see to be sure, in part due to the large uncertainties in earlier measurements. If we focus on just the average temperature, we can then plot a trendline using a linear regression model.
+
+
+```python
+# Calculating the trendline using the cleaned data (to avoid nan errors)
+slope, intercept, r_value, p_value, std_err = linregress(global_temps_clean['Year'], global_temps_clean['LandAverageTemperature'])
+
+# Generating the trendline values
+trendline = intercept + slope * global_temps_clean['Year']
+
+# Create the figure and axes
+fig, ax = plt.subplots(figsize=(10, 5))
+
+# Plotting the average temperature using the cleaned data
+sns.lineplot(data=global_temps_clean, x='Year', y='LandAverageTemperature', color='#B39DDB', ax=ax, label='Average Temperature')  # Soft Purple
+
+# Plotting the trendline on top
+ax.plot(global_temps_clean['Year'], trendline, color='red', linestyle='--', label='Trendline')
+
+
+ax.legend(loc='lower right')
+
+# Set the title and labels
+plt.title('Average Global Land Temperature with Trendline', fontsize=14)
+plt.ylabel('Land Average Temperature (ºC)')
+plt.xlabel('Year')
+
+# Set x-ticks and labels
+ax.set_xticks(years)
+ax.set_xticklabels(years, rotation=45, fontsize=10)
+
+# Save and show the figure
+plt.savefig('global_land_average_with_trendline.png')
+plt.show()
+
+```
+
+
+    
+![png](/images/projects/global_temps/trendline.png)
+    
+
+
+So we see a clear trend upward. Early data is less tightly bound, due to the aforementioned uncertainties, so the trendline perhaps appears less steep than it may othwerwise be. 
+
 ### We can repeat this for the ocean temperatures (noting that the data starts in 1850)
 
 
 ```python
-#upper and lower uncertainties
 global_temps['LandAndOceanAverageTemperature+Unc'] = (
     global_temps['LandAndOceanAverageTemperature'] +
     global_temps['LandAndOceanAverageTemperatureUncertainty']
@@ -111,39 +157,29 @@ global_temps['LandAndOceanAverageTemperature-Unc'] = (
     global_temps['LandAndOceanAverageTemperatureUncertainty']
 )
 
-# Creating the figure and axis
+# Create the figure and axes
 fig, ax = plt.subplots(figsize=(10, 5))
 
-# Plotting ocean temperature data
-sns.lineplot(data=global_temps,
-             x='Year', y='LandAndOceanAverageTemperature', 
-             color='#B39DDB', ax=ax, 
-             label='Average Temperature')  
-sns.lineplot(data=global_temps, 
-            x='Year', y='LandAndOceanAverageTemperature+Unc', 
-            color='#EF5350', ax=ax, 
-            label='+ Uncertainty')  
-sns.lineplot(data=global_temps,     
-            x='Year', y='LandAndOceanAverageTemperature-Unc', 
-            color='#66BB6A', ax=ax, 
-            label='- Uncertainty')  
+# Plot the ocean temperature data
+sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature', color='#B39DDB', ax=ax, label='Average Temperature')  
+sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature+Unc', color='#EF5350', ax=ax, label='+ Uncertainty')  
+sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature-Unc', color='#66BB6A', ax=ax, label='- Uncertainty')  
 
-# Settig title etc
+# Set the title and labels
 plt.title('Average Global Ocean Temperature Since 1850', fontsize=14)
 plt.ylabel('Ocean Average Temperature (ºC)')
 plt.xlabel('Year')
 
-# Set x-ticks to be 5 years, starting at 1850
-# steps of 5
+# Set x-ticks and labels
+# Set x-ticks starting from 1850
 ax.set_xticks(np.arange(1850, global_temps['Year'].max() + 1, 5))
-ax.set_xticklabels(np.arange(1850, 
-                   global_temps['Year'].max() + 1, 5),
-                   rotation=45, fontsize=10)
+ax.set_xticklabels(np.arange(1850, global_temps['Year'].max() + 1, 5), rotation=45, fontsize=10)
 
 
+# Add the legend
 ax.legend(loc='lower right')
 
-# saving figure
+# Save and show the figure
 fig.savefig('ocean.png')
 plt.show()
 
@@ -153,5 +189,7 @@ plt.show()
     
 ![png](/images/projects/global_temps/global_ocean_average.png)
     
+
+
 
 
