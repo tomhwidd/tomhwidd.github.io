@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-![Horsehead nebula](/images/nebula.jpg){: .align-right width="300px"}
+<!-- ![Horsehead nebula](/images/nebula.jpg){: .align-right width="300px"} -->
 
 🪐 I am a third year university student studying toward an MPhys (Astrophysics with space science). 
 
