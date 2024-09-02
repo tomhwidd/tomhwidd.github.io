@@ -21,11 +21,14 @@ redirect_from:
 
 ## Featured Project
 
-<div class="featured-project">
-{% assign featured_project = site.projects | where: "featured", true | first %}
-  <h3><a href="{{ featured_project.url }}">{{ featured_project.title }}</a></h3>
-  <p>{{ featured_project.excerpt | strip_html }}</p>
-  <a href="{{ featured_project.url }}"><img src="{{ featured_project.image }}" alt="{{ featured_project.title }}"></a>
+<div class="featured-projects">
+{% assign featured_projects = site.projects | where: "featured", true %}
+{% for project in featured_projects %}
+  <div class="project">
+    <h3><a href="{{ project.url }}">{{ project.title }}</a></h3>
+    <p>{{ project.excerpt }}</p>
+  </div>
+{% endfor %}
 </div>
 
 <p><a href="/projects/">See all projects</a></p>

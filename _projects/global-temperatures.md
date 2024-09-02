@@ -1,11 +1,10 @@
 ---
-title: "Earth Surface Temperature and the Impacts of Climate Change"
-excerpt: "My first data analysis project, where I explore global temperature data and plotting methods."
+title: "Earth surface temperature and the impacts of climate change "
+excerpt: "My first data analysis project, for me to learn and improve my skills. In this project I look at global temperature data and use different methods of plottng, to see trends.  <br/><img src='/images/projects/global_temps/global_land_average.png'>"
 collection: projects
 featured: true
 image: "/images/projects/global_temps/global_land_average.png"
 ---
-
 
 # Global temperature data
 
