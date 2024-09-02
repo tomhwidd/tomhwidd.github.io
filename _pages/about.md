@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-<!-- ![Horsehead nebula](/images/nebula.jpg){: .align-right width="300px"} -->
+![Horsehead nebula](/images/nebula.jpg){: .align-right width="300px"}
 
 🪐 I am a third year university student studying toward an MPhys (Astrophysics with space science). 
 
@@ -18,11 +18,12 @@ redirect_from:
 📊 I am interested in expanding my data science skills, putting them to use in tackling climate change
 
 🧑‍🔬 I have experience writing worked physics exam solutions using LaTeX. This has helped hundreds of students develop problem solving skills in preparation for their final exam.  
+---
 
 <br/><br/>
 
 ## Featured Project 
-
+---
 <div class="featured-projects">
 {% assign featured_projects = site.projects | where: "featured", true %}
 {% for project in featured_projects %}
