@@ -21,8 +21,7 @@ redirect_from:
 
 <br/><br/>
 
-## Featured Project
-<p><a href="/projects/">See all projects</a></p>
+## Featured Project <p><a href="/projects/" style="color: #9370DB;">See all projects</a></p>
 
 <div class="featured-projects">
 {% assign featured_projects = site.projects | where: "featured", true %}
