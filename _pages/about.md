@@ -22,8 +22,6 @@ redirect_from:
 
 ---
 
-<br/><br/>
-
 ## Featured Project 
 
 <div class="featured-projects">
