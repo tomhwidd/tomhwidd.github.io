@@ -21,7 +21,7 @@ redirect_from:
 
 <br/><br/>
 
-## Featured Project <h2>Featured Project <a href="/projects/" style="color: #9370DB;">See all projects</a></h2>
+## Featured Project 
 
 <div class="featured-projects">
 {% assign featured_projects = site.projects | where: "featured", true %}
@@ -33,6 +33,7 @@ redirect_from:
 {% endfor %}
 </div>
 
+<p><a href="/projects/" style="color: #9370DB;">See all projects</a></p>
 
 
 
