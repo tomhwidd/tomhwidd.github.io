@@ -24,7 +24,7 @@ redirect_from:
 <br/><br/>
 
 ## Featured Project 
----
+
 <div class="featured-projects">
 {% assign featured_projects = site.projects | where: "featured", true %}
 {% for project in featured_projects %}
