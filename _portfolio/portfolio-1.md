@@ -31,7 +31,7 @@ import plotly as py
 import seaborn as sns
 ```
 
-#### PLotting average global land temperatures over time
+### PLotting average global land temperatures over time
 
 For the initial analysis, I decided to plot average global land temperaures, to see the general trend. Luckily this data came with uncertanties, which we will use later on.
 
@@ -64,7 +64,7 @@ global_temps['LandAverageTemperature-Unc'] = global_temps['LandAverageTemperatur
 fig, ax = plt.subplots(figsize=(10, 5))
 
 # Plot the data with updated colors and labels for the legend
-sns.lineplot(data=global_temps, x='Year', y='LandAverageTemperature', color='#B39DDB', ax=ax, label='Temperature')  # Soft Purple
+sns.lineplot(data=global_temps, x='Year', y='LandAverageTemperature', color='#B39DDB', ax=ax, label='Average Temperature')  # Soft Purple
 sns.lineplot(data=global_temps, x='Year', y='LandAverageTemperature+Unc', color='#EF5350', ax=ax, label='+ Uncertainty')  # Soft Red
 sns.lineplot(data=global_temps, x='Year', y='LandAverageTemperature-Unc', color='#66BB6A', ax=ax, label='- Uncertainty')  # Green
 
@@ -74,7 +74,7 @@ ax.legend()
 
 
 # Set the title and labels
-plt.title('Average Global Land Temperature Over Time', fontsize=14)
+plt.title('Average Global Land Temperature Since 1750', fontsize=14)
 plt.ylabel('Land Average Temperature (ºC)')
 plt.xlabel('Year')
 
@@ -94,33 +94,43 @@ plt.show()
     
 
 
-### We can repeat this for the ocean temmperatures (noting that the data starts in 1850)
+### We can repeat this for the ocean temperatures (noting that the data starts in 1850)
 
 
 ```python
+global_temps['LandAndOceanAverageTemperature+Unc'] = (
+    global_temps['LandAndOceanAverageTemperature'] +
+    global_temps['LandAndOceanAverageTemperatureUncertainty']
+)
+global_temps['LandAndOceanAverageTemperature-Unc'] = (
+    global_temps['LandAndOceanAverageTemperature'] -
+    global_temps['LandAndOceanAverageTemperatureUncertainty']
+)
+
 # Create the figure and axes
 fig, ax = plt.subplots(figsize=(10, 5))
 
 # Plot the ocean temperature data
-sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature', color='#B39DDB', ax=ax, label='Ocean Temperature')  # SkyBlue
-sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature+Unc', color='#EF5350', ax=ax, label='+ Uncertainty')  # Tomato
-sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature-Unc', color='#66BB6A', ax=ax, label='- Uncertainty')  # SteelBlue
+sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature', color='#B39DDB', ax=ax, label='Average Temperature')  
+sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature+Unc', color='#EF5350', ax=ax, label='+ Uncertainty')  
+sns.lineplot(data=global_temps, x='Year', y='LandAndOceanAverageTemperature-Unc', color='#66BB6A', ax=ax, label='- Uncertainty')  
 
-
-plt.title('Average Global Land Temperature Over Time')
+# Set the title and labels
+plt.title('Average Global Ocean Temperature Since 1850', fontsize=14)
 plt.ylabel('Ocean Average Temperature (ºC)')
 plt.xlabel('Year')
 
-# here i adjusted the x-axis to begin at 1850 as this is teh earleist data available
-ax.set_xticks(np.arange(1850, global_temps['Year'].max() + 1, 10))
-ax.set_xticklabels(np.arange(1850, global_temps['Year'].max() + 1, 10), rotation=45, fontsize=10)
+# Set x-ticks and labels
+# Set x-ticks starting from 1850
+ax.set_xticks(np.arange(1850, global_temps['Year'].max() + 1, 5))
+ax.set_xticklabels(np.arange(1850, global_temps['Year'].max() + 1, 5), rotation=45, fontsize=10)
 
 
 # Add the legend
 ax.legend(loc='lower right')
 
 # Save and show the figure
-fig.savefig('global_ocean_average.png')
+fig.savefig('ocean.png')
 plt.show()
 
 ```
@@ -129,6 +139,5 @@ plt.show()
     
 ![png](/images/projects/global_temps/global_ocean_average.png)
     
-
 
 
