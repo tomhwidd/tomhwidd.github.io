@@ -31,7 +31,7 @@ import plotly as py
 import seaborn as sns
 ```
 
-### PLotting average global land temperatures over time
+### Plotting average global land temperatures over time
 
 For the initial analysis, I decided to plot average global land temperaures, to see the general trend. Luckily this data came with uncertanties, which we will use later on.
 
