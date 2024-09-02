@@ -22,7 +22,7 @@ redirect_from:
 
 ---
 
-## Featured Project 
+# Featured Project 
 
 <div class="featured-projects">
 {% assign featured_projects = site.projects | where: "featured", true %}
