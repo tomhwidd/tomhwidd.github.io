@@ -1,7 +1,7 @@
 ---
 title: "Earth surface temperature and the impacts of climate change "
 excerpt: "My first data analysis project, for me to learn and improve my skills. In this project I look at global temperature data and use different methods of plottng, to see trends.  <br/><img src='/images/projects/global_temps/global_land_average.png'>"
-collection: portfolio
+collection: projects
 ---
 
 # Global temperature data
