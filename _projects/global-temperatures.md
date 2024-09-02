@@ -53,9 +53,11 @@ years = np.arange(global_temps['Year'].min(), global_temps['Year'].max() + 1, 10
 
 # Calculating upp and lower uncertainties
 global_temps['LandAverageTemperature+Unc'] = 
-global_temps['LandAverageTemperature'] + global_temps['LandAverageTemperatureUncertainty']
+global_temps['LandAverageTemperature'] 
++ global_temps['LandAverageTemperatureUncertainty']
 
-global_temps['LandAverageTemperature-Unc'] = global_temps['LandAverageTemperature'] - global_temps['LandAverageTemperatureUncertainty']
+global_temps['LandAverageTemperature-Unc'] = global_temps['LandAverageTemperature'] 
+- global_temps['LandAverageTemperatureUncertainty']
 
 # Creating the figure and axis
 fig, ax = plt.subplots(figsize=(10, 5))
