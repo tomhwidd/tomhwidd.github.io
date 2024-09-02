@@ -1,3 +1,9 @@
+---
+title: "Earth surface temperature and the impacts of climate change "
+excerpt: "My first data analysis project, for me to learn and improve my skills. In this project I look at global temperature data and use different methods of plottng, to see trends.  <br/><img src='/images/projects/global_temps/global_land_average.png'>"
+collection: portfolio
+---
+
 # Global temperature data
 
 This project will be a work in progress, continually updated as I learn new python data analysis skills. The aim is to break down global temperature data by different measures, to see trends, outliers and get a general sense of the impacts of climate change.
@@ -84,7 +90,7 @@ plt.show()
 
 
     
-![png](output_5_0.png)
+![png](/images/projects/global_temps/global_land_average.png)
     
 
 
@@ -121,6 +127,8 @@ plt.show()
 
 
     
-![png](output_7_0.png)
+![png](/images/projects/global_temps/global_ocean_average.png)
     
+
+
 
