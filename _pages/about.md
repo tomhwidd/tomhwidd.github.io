@@ -19,7 +19,10 @@ redirect_from:
 
 🧑‍🔬 I have experience writing worked physics exam solutions using LaTeX. This has helped hundreds of students develop problem solving skills in preparation for their final exam.  
 
+<br/><br/>
+
 ## Featured Project
+<p><a href="/projects/">See all projects</a></p>
 
 <div class="featured-projects">
 {% assign featured_projects = site.projects | where: "featured", true %}
@@ -31,7 +34,7 @@ redirect_from:
 {% endfor %}
 </div>
 
-<p><a href="/projects/">See all projects</a></p>
+
 
 
 
