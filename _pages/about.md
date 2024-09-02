@@ -19,6 +19,17 @@ redirect_from:
 
 🧑‍🔬 I have experience writing worked physics exam solutions using LaTeX. This has helped hundreds of students develop problem solving skills in preparation for their final exam.  
 
+## Featured Project
+
+<div class="featured-project">
+{% assign featured_project = site.projects | where: "featured", true | first %}
+  <h3><a href="{{ featured_project.url }}">{{ featured_project.title }}</a></h3>
+  <p>{{ featured_project.excerpt | strip_html }}</p>
+  <a href="{{ featured_project.url }}"><img src="{{ featured_project.image }}" alt="{{ featured_project.title }}"></a>
+</div>
+
+<p><a href="/projects/">See all projects</a></p>
+
 
 
 
