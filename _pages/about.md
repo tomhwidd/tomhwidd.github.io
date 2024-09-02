@@ -33,7 +33,8 @@ redirect_from:
 {% endfor %}
 </div>
 
-<p><a href="/projects/" style="color: #9370DB;">See all projects</a></p>
+<p><a href="/projects/" class="project-link">See all projects</a></p>
+
 
 
 
