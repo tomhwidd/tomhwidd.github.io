@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-
+---
 ![Horsehead nebula](/images/nebula.jpg){: .align-right width="300px"}
 
 🪐 I am a third year university student studying toward an MPhys (Astrophysics with space science). 
