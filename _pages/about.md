@@ -11,11 +11,11 @@ redirect_from:
 ---
 ![Horsehead nebula](/images/nebula.jpg){: .align-right width="300px"}
 
-🪐 I am a third year university student studying toward an MPhys (Astrophysics with space science). 
+🪐 I am a final year university student studying toward an MPhys (Astrophysics). 
 
 🌥️ I am an active member of a student led weather and climate club, particpating in coding workshops and helping to maintain a github account
 
-📊 I am interested in expanding my data science skills, putting them to use in tackling climate change
+📊 I am interested in expanding my data science skills, putting them to use in remote sensing, astronomical datasets and for tackling climate change
 
 🧑‍🔬 I have experience writing worked physics exam solutions using LaTeX. This has helped hundreds of students develop problem solving skills in preparation for their final exam.  
 <br/><br/>
